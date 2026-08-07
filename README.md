@@ -26,7 +26,7 @@ AI에게 곧장 답을 구하기 전에, 스스로 생각할 기회를 돌려주
 ## 기술 스택
 
 - **Frontend / Server**: [Next.js](https://nextjs.org/)
-- **AI**: [Claude API](https://platform.claude.com/) (Anthropic) — 되묻는 대화 및 최종 답변 생성
+- **AI**: [Gemini API](https://ai.google.dev/) (Google) — 되묻는 대화 및 최종 답변 생성
 
 ## 설치 및 실행
 
@@ -34,10 +34,10 @@ AI에게 곧장 답을 구하기 전에, 스스로 생각할 기회를 돌려주
 npm install
 ```
 
-`.env.local` 파일에 Claude API 키를 설정합니다.
+`.env.local` 파일에 Gemini API 키를 설정합니다. ([Google AI Studio](https://aistudio.google.com/apikey)에서 무료로 발급)
 
 ```bash
-ANTHROPIC_API_KEY=your-api-key
+GEMINI_API_KEY=your-api-key
 ```
 
 ```bash
