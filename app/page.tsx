@@ -106,52 +106,50 @@ export default function Home() {
     .map((m) => m.content)
     .join("\n\n");
 
-  const errorBanner = error && (
-    <p style={{ color: "#c0392b", marginTop: "0.75rem" }}>{error}</p>
-  );
+  const errorBanner = error && <p className="error-banner">{error}</p>;
 
   if (finalAnswer !== null) {
     return (
-      <main style={{ maxWidth: 900, margin: "0 auto", padding: "2rem 1rem" }}>
+      <main className="container container--wide">
         <h1>내 생각 vs AI 답변</h1>
-        <div style={{ display: "flex", gap: "1.5rem", marginTop: "1.5rem" }}>
-          <section style={{ flex: 1 }}>
+        <div className="compare-grid">
+          <section className="compare-card">
             <h2>내가 쌓아온 생각</h2>
-            <p style={{ whiteSpace: "pre-wrap" }}>{myThoughts}</p>
+            <p>{myThoughts}</p>
           </section>
-          <section style={{ flex: 1 }}>
+          <section className="compare-card">
             <h2>AI 답변</h2>
-            <p style={{ whiteSpace: "pre-wrap" }}>{finalAnswer}</p>
+            <p>{finalAnswer}</p>
           </section>
         </div>
 
         {followUps.length > 0 && (
-          <div style={{ marginTop: "2rem", display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <div className="followups">
             {followUps.map((f, i) => (
               <div key={i}>
-                <p style={{ fontWeight: "bold", whiteSpace: "pre-wrap" }}>Q. {f.question}</p>
-                <p style={{ whiteSpace: "pre-wrap" }}>{f.answer}</p>
+                <p className="followup-q">Q. {f.question}</p>
+                <p className="followup-a">{f.answer}</p>
               </div>
             ))}
           </div>
         )}
 
-        <div style={{ display: "flex", gap: "0.5rem", marginTop: "1.5rem" }}>
+        <div className="input-row" style={{ marginTop: "1.5rem" }}>
           <input
+            className="text-input"
             value={followUpInput}
             onChange={(e) => setFollowUpInput(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && askFollowUp()}
             placeholder="추가로 궁금한 걸 물어보세요"
-            style={{ flex: 1, padding: "0.5rem" }}
           />
           <button onClick={askFollowUp} disabled={loading || !followUpInput.trim()}>
             질문하기
           </button>
         </div>
-        {loading && <div style={{ marginTop: "0.5rem" }}>...</div>}
+        {loading && <p className="typing">...</p>}
         {errorBanner}
 
-        <button onClick={reset} style={{ marginTop: "2rem" }}>
+        <button className="secondary" onClick={reset} style={{ marginTop: "2rem", alignSelf: "flex-start" }}>
           새로 시작하기
         </button>
       </main>
@@ -159,49 +157,35 @@ export default function Home() {
   }
 
   return (
-    <main style={{ maxWidth: 700, margin: "0 auto", padding: "2rem 1rem" }}>
+    <main className="container">
       <h1>sgprojectastar</h1>
-      <p>궁금한 걸 물어보세요. AI가 곧바로 답하지 않고 되물으며 생각을 끌어냅니다.</p>
+      <p className="subtitle">궁금한 걸 물어보세요. AI가 곧바로 답하지 않고 되물으며 생각을 끌어냅니다.</p>
 
-      <div style={{ marginTop: "1.5rem", display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+      <div className="chat-log">
         {messages.map((m, i) => (
-          <div
-            key={i}
-            style={{
-              alignSelf: m.role === "user" ? "flex-end" : "flex-start",
-              background: m.role === "user" ? "#e8f0fe" : "#f1f1f1",
-              padding: "0.5rem 0.75rem",
-              borderRadius: 8,
-              maxWidth: "80%",
-              whiteSpace: "pre-wrap",
-            }}
-          >
+          <div key={i} className={`bubble ${m.role === "user" ? "bubble--user" : "bubble--assistant"}`}>
             {m.content}
           </div>
         ))}
-        {loading && <div>...</div>}
+        {loading && <p className="typing">...</p>}
       </div>
 
       {errorBanner}
 
-      <div style={{ display: "flex", gap: "0.5rem", marginTop: "1.5rem" }}>
+      <div className="input-row">
         <input
+          className="text-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           placeholder="궁금한 걸 입력하세요"
-          style={{ flex: 1, padding: "0.5rem" }}
         />
         <button onClick={sendMessage} disabled={loading}>
           보내기
         </button>
       </div>
 
-      <button
-        onClick={getAnswer}
-        disabled={messages.length === 0 || loading}
-        style={{ marginTop: "1rem" }}
-      >
+      <button className="answer-btn" onClick={getAnswer} disabled={messages.length === 0 || loading}>
         답변 받아보기
       </button>
     </main>
