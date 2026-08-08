@@ -73,6 +73,13 @@ GEMINI_API_KEY=your-api-key
 npm run dev
 ```
 
+## 문서
+
+- [`docs/sg_ai.md`](docs/sg_ai.md) — 프로젝트 기획/스펙 문서 (Why/How/What, MVP 범위, 리스크)
+- [`docs/골든서클_발표.pptx`](docs/골든서클_발표.pptx) — Why → What → 결과/배포 순서로 정리한 3장짜리 발표 자료
+- [`docs/골든서클_프로젝트_피드백.md`](docs/골든서클_프로젝트_피드백.md) — 스킬 방향으로 피벗하게 된 멘토 피드백 원문
+- [`사용설명서.md`](사용설명서.md) — Claude Code 사용자용 설치법 + Claude Code 없이도 쓰는 복사-붙여넣기 프롬프트
+
 ## 라이선스
 
 MIT
